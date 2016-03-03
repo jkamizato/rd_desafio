@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+valor_extra_one:
   contato_id: 1
   campo_extra_id: 1
   valor: MyText
 
-two:
+valor_extra_two:
   contato_id: 1
   campo_extra_id: 1
   valor: MyText

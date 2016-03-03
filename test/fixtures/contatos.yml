@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-julio:
-  email: jkamizato@gmail.com
+fulano:
+  email: fulano@detal.com
   user_id: 1
 
-mari:
-  email: mari@gmail.com
+beltrano:
+  email: beltrano@maria.com
   user_id: 2

@@ -2,10 +2,14 @@
 
 one:
   label: Sexo
+  chave: sexo
   campo_tipo: combobox
   user_id: 1
+  select_option: "[['Masculino', 'masculino'], ['Feminino', 'feminino']]"
 
-two:
+campo_extra_two:
   label: Altura
+  chave: altura
   campo_tipo: text
   user_id: 1
+  select_option: nil
