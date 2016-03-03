@@ -4,7 +4,7 @@ class ContatosController < ApplicationController
   # GET /contatos
   # GET /contatos.json
   def index
-    @contatos = Contato.all
+    @contatos = Contato.where user_id: current_user.id
   end
 
   # GET /contatos/1
