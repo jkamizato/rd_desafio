@@ -1,0 +1,37 @@
+<%= form_for(@campo_extra) do |f| %>
+  <% if @campo_extra.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@campo_extra.errors.count, "error") %> prohibited this campo_extra from being saved:</h2>
+
+      <ul>
+      <% @campo_extra.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="field">
+    <%= f.label :label %><br>
+    <%= f.text_field :label %>
+  </div>
+
+
+    <div class="field">
+      <%= f.select :campo_tipo,
+        options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combobox', 'combobox']], params[:campo_tipo])
+      %>
+
+    </div>
+
+    <div class="field">
+      <%= f.label :select_option %>
+      <%= f.text_area :select_option %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

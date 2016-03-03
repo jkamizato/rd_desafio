@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: Sexo
+  campo_tipo: combobox
+  user_id: 1
+
+two:
+  label: Altura
+  campo_tipo: text
+  user_id: 1

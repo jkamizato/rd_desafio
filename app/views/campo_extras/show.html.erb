@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @campo_extra.label %>
+</p>
+
+<p>
+  <strong>Campo tipo:</strong>
+  <%= @campo_extra.campo_tipo %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @campo_extra.user_id %>
+</p>
+
+<p>
+  <strong>Select Option</strong>
+  <%= @campo_extra.select_option %>
+</p>
+<%= link_to 'Edit', edit_campo_extra_path(@campo_extra) %> |
+<%= link_to 'Back', campo_extras_path %>
