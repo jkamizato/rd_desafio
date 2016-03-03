@@ -21,13 +21,13 @@
             <div class="field">
                 <%= label_tag campo.chave.to_sym %><br>
                 <% case campo.campo_tipo when 'text' %>
-                    <%= text_field_tag campo.chave.to_sym %>
+                    <%= text_field_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]", @valor_extra[campo.id] %>
                 <% when 'textarea' %>
-                    <%= text_area_tag campo.chave.to_sym %>
+                    <%= text_area_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]", @valor_extra[campo.id] %>
                 <% when 'combobox' %>
                   <% @option = eval(campo.select_option) %>
-                  <%= select_tag campo.chave.to_sym,
-                               options_for_select(@option, params[campo.chave.to_sym])
+                  <%= select_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]",
+                               options_for_select(@option, @valor_extra[campo.id])
                   %>
 
                 <% end %>
