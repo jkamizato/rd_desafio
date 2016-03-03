@@ -70,6 +70,6 @@ class CampoExtrasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campo_extra_params
-      params.require(:campo_extra).permit(:label, :campo_tipo, :user_id, :select_option)
+      params.require(:campo_extra).permit(:label, :campo_tipo, :user_id, :select_option, :chave)
     end
 end

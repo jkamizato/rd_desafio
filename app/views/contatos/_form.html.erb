@@ -16,6 +16,14 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+
+    <% @campo_extra.each do |campo| %>
+        <% case campo.campo_tipo
+             when 'text' %><%= 'text' %>
+            <% when 'textarea' %><%= 'textarea' %>
+            <% when 'combobox' %><%= 'combobox' %>
+        <% end %>
+    <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

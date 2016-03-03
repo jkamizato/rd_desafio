@@ -17,13 +17,15 @@
     <%= f.label :label %><br>
     <%= f.text_field :label %>
   </div>
-
+    <div class="field">
+      <%= f.label :chave %><br/>
+      <%= f.text_field :chave %>
+    </div>
 
     <div class="field">
       <%= f.select :campo_tipo,
         options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combobox', 'combobox']], params[:campo_tipo])
       %>
-
     </div>
 
     <div class="field">
