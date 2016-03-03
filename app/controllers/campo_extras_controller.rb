@@ -1,5 +1,6 @@
 class CampoExtrasController < ApplicationController
   before_action :set_campo_extra, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /campo_extras
   # GET /campo_extras.json
