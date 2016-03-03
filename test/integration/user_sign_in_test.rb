@@ -5,6 +5,8 @@ class UserSignInTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 
+
+
   test "layout form" do
     get new_user_session_path
     assert_select 'input#user_email'
@@ -18,4 +20,7 @@ class UserSignInTest < ActionDispatch::IntegrationTest
     post user_session_path, user: {email: "asdf@asdf.com", password: "123"}
     assert_not flash.empty?
   end
+
+
+
 end
