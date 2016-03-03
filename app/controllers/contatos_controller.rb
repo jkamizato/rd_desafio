@@ -21,6 +21,7 @@ class ContatosController < ApplicationController
 
   # GET /contatos/1/edit
   def edit
+    @campo_extra = CampoExtra.where user_id: current_user.id
   end
 
   # POST /contatos
