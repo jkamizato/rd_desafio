@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ContatosControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @contato = contatos(:julio)
   end
