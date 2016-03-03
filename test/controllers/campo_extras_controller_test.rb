@@ -17,15 +17,15 @@ class CampoExtrasControllerTest < ActionController::TestCase
     assert_redirected_to new_user_session_path
   end
 
-=begin
-  test "should create campo_extra" do
-    assert_difference('CampoExtra.count') do
+
+  test "should create campo_extra - Redirected" do
+    assert_no_difference('CampoExtra.count') do
       post :create, campo_extra: { campo_tipo: @campo_extra.campo_tipo, label: @campo_extra.label, user_id: @campo_extra.user_id }
     end
 
-    assert_redirected_to campo_extra_path(assigns(:campo_extra))
+    assert_redirected_to new_user_session_path
   end
-=end
+
 
   test "should show campo_extra Redirected" do
     get :show, id: @campo_extra
@@ -49,7 +49,6 @@ class CampoExtrasControllerTest < ActionController::TestCase
     assert_difference('CampoExtra.count', 0) do
       delete :destroy, id: @campo_extra
     end
-
     assert_redirected_to new_user_session_path
   end
 end
