@@ -23,13 +23,14 @@
     </div>
 
     <div class="field">
+      <%= f.label :campo_tipo %><br>
       <%= f.select :campo_tipo,
         options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combobox', 'combobox']], params[:campo_tipo])
       %>
     </div>
 
     <div class="field">
-      <%= f.label :select_option %>
+      <%= f.label :select_option %><br>
       <%= f.text_area :select_option %>
     </div>
 

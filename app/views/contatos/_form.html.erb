@@ -17,13 +17,23 @@
     <%= f.text_field :email %>
   </div>
 
-    <% @campo_extra.each do |campo| %>
-        <% case campo.campo_tipo
-             when 'text' %><%= 'text' %>
-            <% when 'textarea' %><%= 'textarea' %>
-            <% when 'combobox' %><%= 'combobox' %>
+       <% @campo_extra.each do |campo| %>
+            <div class="field">
+                <%= label_tag campo.chave.to_sym %><br>
+                <% case campo.campo_tipo when 'text' %>
+                    <%= text_field_tag campo.chave.to_sym %>
+                <% when 'textarea' %>
+                    <%= text_area_tag campo.chave.to_sym %>
+                <% when 'combobox' %>
+                  <% @option = eval(campo.select_option) %>
+                  <%= select_tag campo.chave.to_sym,
+                               options_for_select(@option, params[campo.chave.to_sym])
+                  %>
+
+                <% end %>
+            </div>
         <% end %>
-    <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
