@@ -1,3 +1,9 @@
+<% content_for :custom_js do %>
+    <script type="text/javascript">
+        <%= render file: "#{Rails.root}/app/views/campo_extras/js/new.erb.js" %>
+    </script>
+<% end %>
+
 <%= form_for(@campo_extra) do |f| %>
   <% if @campo_extra.errors.any? %>
     <div id="error_explanation">
@@ -25,11 +31,11 @@
     <div class="field">
       <%= f.label :campo_tipo %><br>
       <%= f.select :campo_tipo,
-        options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combobox', 'combobox']], params[:campo_tipo])
+        options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combo box', 'combobox']], @campo_extra.campo_tipo)
       %>
     </div>
 
-    <div class="field">
+    <div class="field div_select_option">
       <%= f.label :select_option %><br>
       <%= f.text_area :select_option %>
     </div>
