@@ -12,7 +12,7 @@ RSpec.describe Contato, type: :model do
     expect(contato.errors[:email]).to include("can't be blank")
   end
 
-  it 'is invalid with a duplicate address for a user' do
+  it 'is invalid with a duplicate address for the same user' do
     Contato.create(user_id: 1, email: 'julio@gmail.com')
     contato = Contato.new(user_id: 1, email: 'julio@gmail.com')
     contato.valid?

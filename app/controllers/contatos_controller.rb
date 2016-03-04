@@ -3,14 +3,14 @@ class ContatosController < ApplicationController
   before_action :authenticate_user!
 
   # GET /contatos
-  # GET /contatos.json
   def index
     @contatos = Contato.where user_id: current_user.id
   end
 
   # GET /contatos/1
-  # GET /contatos/1.json
   def show
+    initialize_campos_valor_extra
+    load_valor_extra_by_contact params[:id]
   end
 
   # GET /contatos/new
@@ -26,47 +26,32 @@ class ContatosController < ApplicationController
   end
 
   # POST /contatos
-  # POST /contatos.json
   def create
     @contato = Contato.new(contato_params)
-
-    respond_to do |format|
-      if @contato.save
-        create_campo_extra
-        format.html { redirect_to @contato, notice: 'Contato was successfully created.' }
-        format.json { render :show, status: :created, location: @contato }
-      else
-        initialize_campos_valor_extra
-        format.html { render :new }
-        format.json { render json: @contato.errors, status: :unprocessable_entity }
-      end
+    if @contato.save
+      create_campo_extra
+      redirect_to @contato, notice: 'Contato was successfully created.'
+    else
+      initialize_campos_valor_extra
+      render :new
     end
   end
 
   # PATCH/PUT /contatos/1
-  # PATCH/PUT /contatos/1.json
   def update
-    respond_to do |format|
-      if @contato.update(contato_params)
-        create_campo_extra
-        format.html { redirect_to @contato, notice: 'Contato was successfully updated.' }
-        format.json { render :show, status: :ok, location: @contato }
-      else
-        initialize_campos_valor_extra
-        format.html { render :edit }
-        format.json { render json: @contato.errors, status: :unprocessable_entity }
-      end
+    if @contato.update(contato_params)
+      create_campo_extra
+      redirect_to @contato, notice: 'Contato was successfully updated.'
+    else
+      initialize_campos_valor_extra
+      render :edit
     end
   end
 
   # DELETE /contatos/1
-  # DELETE /contatos/1.json
   def destroy
     @contato.destroy
-    respond_to do |format|
-      format.html { redirect_to contatos_url, notice: 'Contato was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to contatos_url, notice: 'Contato was successfully destroyed.'
   end
 
   private

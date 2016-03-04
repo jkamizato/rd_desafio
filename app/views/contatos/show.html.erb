@@ -9,6 +9,14 @@
   <strong>User:</strong>
   <%= @contato.user_id %>
 </p>
+<% @campo_extra.each do |campo| %>
+    <% unless @valor_extra[campo.id].blank?%>
+        <p>
+          <strong><%= campo.label %>:</strong>
+            <%= @valor_extra[campo.id] %>
+        </p>
+    <% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_contato_path(@contato), class: 'btn btn-default' %> |
 <%= link_to 'Back', contatos_path, class: 'btn btn-default' %>

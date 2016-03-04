@@ -3,13 +3,11 @@ class CampoExtrasController < ApplicationController
   before_action :authenticate_user!
 
   # GET /campo_extras
-  # GET /campo_extras.json
   def index
     @campo_extras = CampoExtra.all
   end
 
   # GET /campo_extras/1
-  # GET /campo_extras/1.json
   def show
   end
 
@@ -23,43 +21,29 @@ class CampoExtrasController < ApplicationController
   end
 
   # POST /campo_extras
-  # POST /campo_extras.json
   def create
     @campo_extra = CampoExtra.new(campo_extra_params)
 
-    respond_to do |format|
-      if @campo_extra.save
-        format.html { redirect_to @campo_extra, notice: 'Campo extra was successfully created.' }
-        format.json { render :show, status: :created, location: @campo_extra }
-      else
-        format.html { render :new }
-        format.json { render json: @campo_extra.errors, status: :unprocessable_entity }
-      end
+    if @campo_extra.save
+      redirect_to @campo_extra, notice: 'Campo extra was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /campo_extras/1
-  # PATCH/PUT /campo_extras/1.json
   def update
-    respond_to do |format|
-      if @campo_extra.update(campo_extra_params)
-        format.html { redirect_to @campo_extra, notice: 'Campo extra was successfully updated.' }
-        format.json { render :show, status: :ok, location: @campo_extra }
-      else
-        format.html { render :edit }
-        format.json { render json: @campo_extra.errors, status: :unprocessable_entity }
-      end
+    if @campo_extra.update(campo_extra_params)
+      redirect_to @campo_extra, notice: 'Campo extra was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /campo_extras/1
-  # DELETE /campo_extras/1.json
   def destroy
     @campo_extra.destroy
-    respond_to do |format|
-      format.html { redirect_to campo_extras_url, notice: 'Campo extra was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to campo_extras_url, notice: 'Campo extra was successfully destroyed.'
   end
 
   private
