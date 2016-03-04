@@ -56,4 +56,12 @@ class ContatosControllerTest < ActionController::TestCase
     assert contato.email = "asdf@asdf.com"
     assert contato.save
   end
+
+  test 'should create a contato post when logged' do
+    sign_in @user
+    assert_difference('Contato.count') do
+      post :create, contato: { email: "asfasdfas@asdfasdf.com", user_id: @contato.user_id }
+    end
+    assert_redirected_to contato_path(assigns(:contato))
+  end
 end

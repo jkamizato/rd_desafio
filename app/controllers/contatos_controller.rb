@@ -16,42 +16,27 @@ class ContatosController < ApplicationController
   # GET /contatos/new
   def new
     @contato = Contato.new
-    @campo_extra = CampoExtra.where user_id: current_user.id
-    @valor_extra = Hash.new
+    initialize_campos_valor_extra
   end
 
   # GET /contatos/1/edit
   def edit
-    @campo_extra = CampoExtra.where user_id: current_user.id
-    @valor_extra = Hash.new
-    valor_extra_record = ValorExtra.where contato_id: params[:id]
-    valor_extra_record.each do |campo|
-      @valor_extra[campo.campo_extra_id] = campo.valor
-    end
-
-    logger.debug @valor_extra.inspect
+    initialize_campos_valor_extra
+    load_valor_extra_by_contact params[:id]
   end
 
   # POST /contatos
   # POST /contatos.json
   def create
     @contato = Contato.new(contato_params)
-    #logger.debug params.inspect
 
     respond_to do |format|
       if @contato.save
-
-        # Clean campo extra do contato
-        # ValorExtra.where(contato_id: @contato.id).destroy_all
-
-        params[:campo_extra].each do |campo_extra_id, chave_valor|
-          @valor = ValorExtra.new(valor_extra_params(campo_extra_id, chave_valor))
-          @valor.save
-        end
-
+        create_campo_extra
         format.html { redirect_to @contato, notice: 'Contato was successfully created.' }
         format.json { render :show, status: :created, location: @contato }
       else
+        initialize_campos_valor_extra
         format.html { render :new }
         format.json { render json: @contato.errors, status: :unprocessable_entity }
       end
@@ -63,16 +48,11 @@ class ContatosController < ApplicationController
   def update
     respond_to do |format|
       if @contato.update(contato_params)
-
-        ValorExtra.where(contato_id: @contato.id).destroy_all
-        params[:campo_extra].each do |campo_extra_id, chave_valor|
-          @valor = ValorExtra.new(valor_extra_params(campo_extra_id, chave_valor))
-          @valor.save
-        end
-
+        create_campo_extra
         format.html { redirect_to @contato, notice: 'Contato was successfully updated.' }
         format.json { render :show, status: :ok, location: @contato }
       else
+        initialize_campos_valor_extra
         format.html { render :edit }
         format.json { render json: @contato.errors, status: :unprocessable_entity }
       end
@@ -107,5 +87,29 @@ class ContatosController < ApplicationController
         valor_extra['contato_id'] = @contato.id
         chave_valor.each { |chave, valor| valor_extra['valor'] = valor}
         valor_extra
+    end
+
+    # salva o campo extra
+    def create_campo_extra
+      if params[:campo_extra]
+        params[:campo_extra].each do |campo_extra_id, chave_valor|
+          @valor = ValorExtra.new(valor_extra_params(campo_extra_id, chave_valor))
+          @valor.save
+        end
+      end
+    end
+
+    # Carrega os valores @campo_extra e @valor_extra dafault para montar o formulario
+    def initialize_campos_valor_extra
+      @campo_extra = CampoExtra.where user_id: current_user.id
+      @valor_extra = Hash.new
+    end
+
+    # carrega os valores do contato
+    def load_valor_extra_by_contact(contato_id)
+      valor_extra_record = ValorExtra.where contato_id: contato_id
+      valor_extra_record.each do |campo|
+        @valor_extra[campo.campo_extra_id] = campo.valor
+      end
     end
 end
