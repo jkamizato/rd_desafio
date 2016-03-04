@@ -49,4 +49,11 @@ class ContatosControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+
+  test 'should not save without email' do
+    contato = Contato.new
+    assert_not contato.save
+    assert contato.email = "asdf@asdf.com"
+    assert contato.save
+  end
 end
