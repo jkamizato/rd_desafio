@@ -6,33 +6,33 @@
 
 <div class="container">
 
-<%= form_for(@campo_extra, :html => {class: "form-horizontal"}) do |f| %>
-  <% if @campo_extra.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@campo_extra.errors.count, "error") %> prohibited this campo_extra from being saved:</h2>
+  <%= form_for(@campo_extra, :html => {class: "form-horizontal"}) do |f| %>
+      <% if @campo_extra.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@campo_extra.errors.count, "error") %> prohibited this campo_extra from being saved:</h2>
 
-      <ul>
-      <% @campo_extra.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+              <% @campo_extra.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-    <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
 
-    <div class="form-group">
-      <%= f.label :label , class: 'control-label col-sm-2'%>
-      <div class="col-sm-10">
-        <%= f.text_field :label, class: 'form-control', placeholder: "Digite o label do campo"%>
+      <div class="form-group">
+        <%= f.label :label , class: 'control-label col-sm-2'%>
+        <div class="col-sm-10">
+          <%= f.text_field :label, class: 'form-control', placeholder: "Digite o label do campo"%>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :chave, class: 'control-label col-sm-2' %>
-      <div class="col-sm-10">
-        <%= f.text_field :chave, class: 'form-control', placeholder: "Digite o a chave do campo" %>
+      <div class="form-group">
+        <%= f.label :chave, class: 'control-label col-sm-2' %>
+        <div class="col-sm-10">
+          <%= f.text_field :chave, class: 'form-control', placeholder: "Digite o a chave do campo" %>
+        </div>
       </div>
-    </div>
 
       <div class="form-group">
         <%= f.label :campo_tipo, class: 'control-label col-sm-2'%>
@@ -56,7 +56,5 @@
         </div>
       </div>
 
-
-
-</div>
-<% end %>
+      </div>
+  <% end %>
