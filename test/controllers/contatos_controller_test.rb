@@ -63,5 +63,36 @@ class ContatosControllerTest < ActionController::TestCase
       post :create, contato: { email: "asfasdfas@asdfasdf.com", user_id: @contato.user_id }
     end
     assert_redirected_to contato_path(assigns(:contato))
+    assert_equal 'Contato was successfully created.', flash[:notice]
+  end
+
+  test 'should show contato when logged' do
+    sign_in @user
+    get :show, id: @contato
+    assert_response :success
+  end
+
+  test 'should get edit when logged' do
+    sign_in @user
+    get :edit, id: @contato
+    assert_response :success
+  end
+
+  test 'should update when logged' do
+    sign_in @user
+    patch :update, id: @contato, contato: { context: @contato.email, user_id: @contato.user_id }
+    assert_redirected_to contato_path(assigns(:contato))
+    assert_equal 'Contato was successfully updated.', flash[:notice]
+  end
+
+  test 'should delete when logged' do
+    sign_in @user
+    assert_difference('Contato.count', -1) do
+      delete :destroy, id: @contato
+    end
+    assert_redirected_to contatos_path
+    assert_equal 'Contato was successfully destroyed.', flash[:notice]
   end
 end
+
+
