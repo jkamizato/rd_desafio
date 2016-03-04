@@ -1,6 +1,6 @@
-<h1>Listing Campo Extras</h1>
-
-<table>
+<h1>Campo Extra</h1>
+<%= link_to 'Novo Campo extra', new_campo_extra_path, class: 'btn btn-primary pull-right' %>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Label</th>
@@ -16,9 +16,9 @@
         <td><%= campo_extra.label %></td>
         <td><%= campo_extra.campo_tipo %></td>
         <td><%= campo_extra.user_id %></td>
-        <td><%= link_to 'Show', campo_extra %></td>
-        <td><%= link_to 'Edit', edit_campo_extra_path(campo_extra) %></td>
-        <td><%= link_to 'Destroy', campo_extra, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', campo_extra, class: 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_campo_extra_path(campo_extra), class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Destroy', campo_extra, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Campo extra', new_campo_extra_path %>
+

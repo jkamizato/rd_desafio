@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Contatos</h1>
-
-<table>
+<h1>Meus Contatos</h1>
+<%= link_to 'Novo Contato', new_contato_path, class: 'btn btn-primary pull-right' %>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Email</th>
@@ -16,9 +14,9 @@
       <tr>
         <td><%= contato.email %></td>
         <td><%= contato.user_id %></td>
-        <td><%= link_to 'Show', contato %></td>
-        <td><%= link_to 'Edit', edit_contato_path(contato) %></td>
-        <td><%= link_to 'Destroy', contato, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', contato, class: 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_contato_path(contato) , class: 'btn btn-primary'%></td>
+        <td><%= link_to 'Destroy', contato, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Contato', new_contato_path %>
+

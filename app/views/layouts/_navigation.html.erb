@@ -1,22 +1,24 @@
 <div class="collapse navbar-collapse">
 
+  <div class="navbar-header">
+    <%= link_to "RD Desafio Dev", root_path, :class => 'navbar-brand' %>
+  </div>
 
-
-
-<ul class="nav navbar-nav">
-  <li><%= link_to "Home", root_path, :class => 'brand' %></li>
   <% if user_signed_in? %>
+      <ul class="nav navbar-nav">
       <li><%= link_to('Campo Extra', campo_extras_path) %></li>
       <li><%= link_to('Contatos', contatos_path) %></li>
-      <li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
-  <% else %>
-      <li><%= link_to('Login', new_user_session_path)  %></li>
-  <% end %>
-  <% if user_signed_in? %>
       <li><%= link_to('Edit account', edit_user_registration_path) %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
+      </ul>
   <% else %>
+      <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to('Login', new_user_session_path)  %></li>
       <li><%= link_to('Sign up', new_user_registration_path)  %></li>
+      </ul>
   <% end %>
-</ul>
+
 
 </div>
