@@ -8,14 +8,11 @@
   <%= @campo_extra.campo_tipo %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @campo_extra.user_id %>
-</p>
-
+<% unless @campo_extra.select_option.blank? %>
 <p>
   <strong>Select Option</strong>
   <%= @campo_extra.select_option %>
+<% end %>
 </p>
-<%= link_to 'Edit', edit_campo_extra_path(@campo_extra) %> |
-<%= link_to 'Back', campo_extras_path %>
+<%= link_to 'Edit', edit_campo_extra_path(@campo_extra), class: 'btn btn-default' %> |
+<%= link_to 'Back', campo_extras_path, class: 'btn btn-default' %>

@@ -1,4 +1,4 @@
-<%= form_for(@contato) do |f| %>
+<%= form_for(@contato, :html => {class: "form-horizontal"}) do |f| %>
   <% if @contato.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@contato.errors.count, "error") %> prohibited this contato from being saved:</h2>
@@ -12,29 +12,34 @@
   <% end %>
 
     <%= f.hidden_field :user_id, value: current_user.id %>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  <div class="form-group">
+    <%= f.label :email, class: "control-label col-sm-2" %>
+    <div class="col-sm-10">
+      <%= f.text_field :email, class: "form-control", placehoder: "Digite o e-mail" %>
+    </div>
   </div>
 
-       <% @campo_extra.each do |campo| %>
-            <div class="field">
-                <%= label_tag campo.chave.to_sym %><br>
-                <% case campo.campo_tipo when 'text' %>
-                    <%= text_field_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]", @valor_extra[campo.id] %>
-                <% when 'textarea' %>
-                    <%= text_area_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]", @valor_extra[campo.id] %>
-                <% when 'combobox' %>
-                  <% @option = eval(campo.select_option) %>
-                  <%= select_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]",
-                               options_for_select(@option, @valor_extra[campo.id])
-                  %>
+   <% @campo_extra.each do |campo| %>
+        <div class="form-group">
+            <%= label_tag campo.chave.to_sym, nil ,class: 'control-label col-sm-2' %>
+            <div class="col-sm-10">
+            <% case campo.campo_tipo when 'text' %>
+                <%= text_field_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]", @valor_extra[campo.id], class: 'form-control' %>
+            <% when 'textarea' %>
+                <%= text_area_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]", @valor_extra[campo.id], class: 'form-control' %>
+            <% when 'combobox' %>
+              <% @option = eval(campo.select_option) %>
+              <%= select_tag "campo_extra[#{campo.id}][#{campo.chave.to_sym}]",
+                           options_for_select(@option, @valor_extra[campo.id]), class: 'form-control'
+              %>
 
-                <% end %>
+            <% end %>
             </div>
-        <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+        </div>
+    <% end %>
+    <div class="form-group actions">
+      <div class="col-sm-10">
+        <%= f.submit 'Save',  class: "btn btn-primary " %>
+      </div>
+    </div>
 <% end %>

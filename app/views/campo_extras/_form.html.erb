@@ -4,7 +4,9 @@
     </script>
 <% end %>
 
-<%= form_for(@campo_extra) do |f| %>
+<div class="container">
+
+<%= form_for(@campo_extra, :html => {class: "form-horizontal"}) do |f| %>
   <% if @campo_extra.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@campo_extra.errors.count, "error") %> prohibited this campo_extra from being saved:</h2>
@@ -19,28 +21,42 @@
 
     <%= f.hidden_field :user_id, value: current_user.id %>
 
-  <div class="field">
-    <%= f.label :label %><br>
-    <%= f.text_field :label %>
-  </div>
-    <div class="field">
-      <%= f.label :chave %><br/>
-      <%= f.text_field :chave %>
+    <div class="form-group">
+      <%= f.label :label , class: 'control-label col-sm-2'%>
+      <div class="col-sm-10">
+        <%= f.text_field :label, class: 'form-control', placeholder: "Digite o label do campo"%>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :chave, class: 'control-label col-sm-2' %>
+      <div class="col-sm-10">
+        <%= f.text_field :chave, class: 'form-control', placeholder: "Digite o a chave do campo" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :campo_tipo %><br>
-      <%= f.select :campo_tipo,
-        options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combo box', 'combobox']], @campo_extra.campo_tipo)
-      %>
-    </div>
+      <div class="form-group">
+        <%= f.label :campo_tipo, class: 'control-label col-sm-2'%>
+        <div class="col-sm-10">
+          <%= f.select :campo_tipo,
+                       options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combo box', 'combobox']], @campo_extra.campo_tipo), {},  { class: 'form-control'}
+          %>
+        </div>
+      </div>
 
-    <div class="field div_select_option">
-      <%= f.label :select_option %><br>
-      <%= f.text_area :select_option %>
-    </div>
+      <div class="form-group field div_select_option">
+        <%= f.label :select_option, class: 'control-label col-sm-2' %>
+        <div class="col-sm-10">
+          <%= f.text_area :select_option, class: 'form-control', rows: 5, cols: 200 %>
+        </div>
+      </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="form-group actions">
+        <div class="col-sm-10">
+          <%= f.submit 'Criar contato',  class: "btn btn-primary " %>
+        </div>
+      </div>
+
+
+
+</div>
 <% end %>
