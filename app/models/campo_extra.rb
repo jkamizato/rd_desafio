@@ -15,9 +15,7 @@ class CampoExtra < ActiveRecord::Base
   end
 
   def select_option_format
-    if self.select_option.nil?
-      return true
-    end
+    return true if self.select_option.nil?
 
     begin
       combos = eval(self.select_option)
@@ -40,7 +38,7 @@ class CampoExtra < ActiveRecord::Base
       end
 
       true
-    rescue
+    rescue Exception => e
       self.errors[:select_option] = 'is invalid'
       false
     end

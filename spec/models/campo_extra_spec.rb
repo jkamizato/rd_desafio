@@ -80,6 +80,12 @@ RSpec.describe CampoExtra, type: :model do
     expect(campo_extra.errors[:select_option]).to include('is invalid')
   end
 
+  it 'is invalid select-tipo array, but forgot the ] ' do
+    campo_extra = CampoExtra.new(label: 'Idade', chave: 'idade', campo_tipo: 'combobox', select_option: "[['Masculino', 'masculino']['Feminino', 'feminino']")
+    campo_extra.valid?
+    expect(campo_extra.errors[:select_option]).to include('is invalid')
+  end
+
   it 'is valid tipo-campo-combo great format' do
     campo_extra = CampoExtra.new(label: 'Idade', chave: 'idade', campo_tipo: 'combobox', select_option: "[['Masculino', 'masculino'], ['Feminino', 'feminino']]")
     campo_extra.valid?
