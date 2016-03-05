@@ -49,4 +49,40 @@ RSpec.describe CampoExtra, type: :model do
     campo_extra.valid?
     expect(campo_extra).to be_valid
   end
+
+  it 'is invalid tipo-campo-combo if select-tipo not array' do
+    campo_extra = CampoExtra.new(label: 'Idade', chave: 'idade', campo_tipo: 'combobox', select_option: "blabla")
+    campo_extra.valid?
+    expect(campo_extra.errors[:select_option]).to include('is invalid')
+  end
+
+  it 'is invalid select-tipo array, but one item not' do
+    campo_extra = CampoExtra.new(label: 'Idade', chave: 'idade', campo_tipo: 'combobox', select_option: "[['Masculino', 'masculino'], 'blabla']")
+    campo_extra.valid?
+    expect(campo_extra.errors[:select_option]).to include('is invalid')
+  end
+
+  it 'is invalid select-tipo array, but none item is valid' do
+    campo_extra = CampoExtra.new(label: 'Idade', chave: 'idade', campo_tipo: 'combobox', select_option: "['blabla']")
+    campo_extra.valid?
+    expect(campo_extra.errors[:select_option]).to include('is invalid')
+  end
+
+  it 'is invalid select-tipo array, but item size is one' do
+    campo_extra = CampoExtra.new(label: 'Idade', chave: 'idade', campo_tipo: 'combobox', select_option: "[['Masculino', 'masculino'], ['Feminino']]")
+    campo_extra.valid?
+    expect(campo_extra.errors[:select_option]).to include('is invalid')
+  end
+
+  it 'is invalid select-tipo array, but forgot the , ' do
+    campo_extra = CampoExtra.new(label: 'Idade', chave: 'idade', campo_tipo: 'combobox', select_option: "[['Masculino', 'masculino']['Feminino', 'feminino']]")
+    campo_extra.valid?
+    expect(campo_extra.errors[:select_option]).to include('is invalid')
+  end
+
+  it 'is valid tipo-campo-combo great format' do
+    campo_extra = CampoExtra.new(label: 'Idade', chave: 'idade', campo_tipo: 'combobox', select_option: "[['Masculino', 'masculino'], ['Feminino', 'feminino']]")
+    campo_extra.valid?
+    expect(campo_extra).to be_valid
+  end
 end

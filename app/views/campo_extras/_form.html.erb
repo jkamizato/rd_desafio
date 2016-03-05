@@ -4,57 +4,62 @@
     </script>
 <% end %>
 
-<div class="container">
 
-  <%= form_for(@campo_extra, :html => {class: "form-horizontal"}) do |f| %>
-      <% if @campo_extra.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@campo_extra.errors.count, "error") %> prohibited this campo_extra from being saved:</h2>
+<%= form_for(@campo_extra, :html => {class: "form-horizontal"}) do |f| %>
+    <% if @campo_extra.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@campo_extra.errors.count, "error") %> prohibited this campo_extra from being saved:</h2>
 
-            <ul>
-              <% @campo_extra.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-      <%= f.hidden_field :user_id, value: current_user.id %>
-
-      <div class="form-group">
-        <%= f.label :label , class: 'control-label col-sm-2'%>
-        <div class="col-sm-10">
-          <%= f.text_field :label, class: 'form-control', placeholder: "Digite o label do campo"%>
+          <ul>
+            <% @campo_extra.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
         </div>
+    <% end %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <div class="form-group">
+      <%= f.label :label , class: 'control-label col-sm-2'%>
+      <div class="col-sm-10">
+        <%= f.text_field :label, class: 'form-control', placeholder: "Digite o label do campo"%>
       </div>
-      <div class="form-group">
-        <%= f.label :chave, class: 'control-label col-sm-2' %>
-        <div class="col-sm-10">
-          <%= f.text_field :chave, class: 'form-control', placeholder: "Digite o a chave do campo" %>
-        </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :chave, class: 'control-label col-sm-2' %>
+      <div class="col-sm-10">
+        <%= f.text_field :chave, class: 'form-control', placeholder: "Digite o a chave do campo" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :campo_tipo, class: 'control-label col-sm-2'%>
+      <div class="col-sm-10">
+        <%= f.select :campo_tipo,
+                     options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combo box', 'combobox']], @campo_extra.campo_tipo), {},  { class: 'form-control'}
+        %>
+      </div>
+    </div>
+
+    <div class="form-group field div_select_option">
+      <%= f.label :select_option, class: 'control-label col-sm-2' %>
+      <div class="col-sm-10">
+        <%= f.text_area :select_option, class: 'form-control', rows: 5, cols: 200 %>
+        <span class = "help-block">
+            Formato de entrada Array [['Texto1', 'valor1'], ['Texto2', 'valor2']] <br/>
+            Exemplos: <br>
+            [['Masculino', 'masculino'], ['Feminino', 'feminino']] <br>
+            [['Casado', 'casado'], ['Solteiro', 'solteiro'], ['Divorciado', 'divorciado']] <br >
+            [['Selecione', '0'], [ 'Verdadeiro', '1'], ['Falso', '2']]
+          </span>
       </div>
 
-      <div class="form-group">
-        <%= f.label :campo_tipo, class: 'control-label col-sm-2'%>
-        <div class="col-sm-10">
-          <%= f.select :campo_tipo,
-                       options_for_select([['Text', 'text'], ['Textarea', 'textarea'], ['Combo box', 'combobox']], @campo_extra.campo_tipo), {},  { class: 'form-control'}
-          %>
-        </div>
-      </div>
+    </div>
 
-      <div class="form-group field div_select_option">
-        <%= f.label :select_option, class: 'control-label col-sm-2' %>
-        <div class="col-sm-10">
-          <%= f.text_area :select_option, class: 'form-control', rows: 5, cols: 200 %>
-        </div>
+    <div class="form-group actions">
+      <div class="col-sm-10">
+        <%= f.submit 'Save',  class: "btn btn-primary " %>
       </div>
-
-      <div class="form-group actions">
-        <div class="col-sm-10">
-          <%= f.submit 'Save',  class: "btn btn-primary " %>
-        </div>
-      </div>
-
-      </div>
-  <% end %>
+    </div>
+<% end %>
