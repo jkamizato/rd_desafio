@@ -1,28 +1,29 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a normal app builded using Ruby on Rails. Then, to run, its important to configure database, make the commmads to migrate and finally run the application: 
 
-Things you may want to cover:
+`rake db:create`
 
-* Ruby version
+`rake db:migrate`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`rails s`
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+=== Using the applicaton
+First, you have to create a user. Access the "Sign UP" in the top menu. Fill the filds, and save.
+
+Now, you can crete the Contacts, using the "Contato" in the top menu.
+
+If you prefer, you can create new field for the contact, using the "Campo Extra".
+
+
+
+=== Test
+For the test, I used:
+
+* Rspec
+* Factory Girl
+* Unit test
+
+So... to run, its simple. In the console make this:  `rspec` and `rake test`
+
