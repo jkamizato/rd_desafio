@@ -14,7 +14,6 @@ RSpec.describe "contatos/new", type: :view do
   end
 
   it 'must have email field' do
-
     assign(:contato, Contato.new)
     assign(:campo_extra, @campo_extra)
     render
@@ -31,7 +30,6 @@ RSpec.describe "contatos/new", type: :view do
 
   it 'when have campo extra textarea, must render it' do
     @campo_extra << FactoryGirl.create(:campo_extra_textarea)
-
     assign(:contato, Contato.new)
     assign(:campo_extra, @campo_extra)
     render

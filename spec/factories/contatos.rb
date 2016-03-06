@@ -2,6 +2,6 @@ require 'faker'
 
 FactoryGirl.define do
   factory :contato do |f|
-    f.email "asdfa@asdf.com"
+    f.email "exemplo@email.com"
   end
 end
