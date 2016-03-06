@@ -6,11 +6,6 @@ gem 'devise'
 
 gem 'devise-bootstrap-views'
 
-gem 'rspec-rails'
-
-gem 'factory_girl_rails'
-
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
@@ -56,6 +51,7 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-rails'
   gem 'faker'
   gem 'capybara'
   gem 'guard-rspec'
