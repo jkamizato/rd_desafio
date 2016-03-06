@@ -4,7 +4,7 @@ class CampoExtrasController < ApplicationController
 
   # GET /campo_extras
   def index
-    @campo_extras = CampoExtra.all
+    @campo_extras = CampoExtra.where user_id: current_user.id
   end
 
   # GET /campo_extras/1

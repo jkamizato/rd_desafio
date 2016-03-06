@@ -15,7 +15,9 @@ class CampoExtra < ActiveRecord::Base
   end
 
   def select_option_format
-    return true if self.select_option.nil?
+    if self.campo_tipo != 'combobox'
+      return true
+    end
 
     begin
       combos = eval(self.select_option)
@@ -44,5 +46,6 @@ class CampoExtra < ActiveRecord::Base
     end
 
 
-  end
+      end
+
 end

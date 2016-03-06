@@ -5,10 +5,6 @@
   <%= @contato.email %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @contato.user_id %>
-</p>
 <% @campo_extra.each do |campo| %>
     <% unless @valor_extra[campo.id].blank?%>
         <p>
